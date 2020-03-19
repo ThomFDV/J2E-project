@@ -8,3 +8,9 @@ services:
       - './frontend:/app'
     ports:
       - '4201:4200'
+
+  server:
+    container_name: j2e-server
+    build: backend
+    ports:
+      - '8081:8080'
