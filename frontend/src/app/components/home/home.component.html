@@ -1,10 +1,10 @@
 <section class="container my-5">
-  <div class="row">
-    <mat-card *ngFor="let gif of gifContainer" class="col-3 m-2">
+  <div class="row justify-content-between">
+    <mat-card *ngFor="let gif of gifContainer" class="card-size m-2 bg-light">
       <mat-card-header>
         <mat-card-title>{{ gif.title }}</mat-card-title>
       </mat-card-header>
-        <iframe [src]="gif.embed_url | safe" class="w-100 h-50" frameborder="0"></iframe>
+        <iframe [src]="gif.embed_url | safe" class="gif-size" frameborder="0"></iframe>
       <mat-card-actions>
         <button mat-mini-fab color="primary" class="mr-2">
           <mat-icon>share</mat-icon>
