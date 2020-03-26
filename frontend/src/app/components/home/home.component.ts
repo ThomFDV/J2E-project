@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GifService } from 'src/app/services/gif.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  result: any;
+
+  constructor(private gifService: GifService) { }
 
   ngOnInit() {
+    this.gifService.getTrendingGif().subscribe((res) => {
+      this.result = res;
+      alert(JSON.stringify(res));
+    }, (err) => {
+      alert(err);
+    });
   }
 
 }
