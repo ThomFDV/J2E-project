@@ -8,14 +8,13 @@ import { GifService } from 'src/app/services/gif.service';
 })
 export class HomeComponent implements OnInit {
 
-  result: any;
+  gifContainer: any;
 
   constructor(private gifService: GifService) { }
 
   ngOnInit() {
     this.gifService.getTrendingGif().subscribe((res) => {
-      this.result = res;
-      alert(JSON.stringify(res));
+      this.gifContainer = res.data;
     }, (err) => {
       alert(err);
     });
