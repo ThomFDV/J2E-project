@@ -9,14 +9,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HomeComponent } from './components/home/home.component';
 import { SafePipe } from './safe.pipe';
+import { RandomGifComponent } from './components/home/random-gif/random-gif.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SafePipe
+    SafePipe,
+    RandomGifComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +29,11 @@ import { SafePipe } from './safe.pipe';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RandomGifComponent]
 })
 export class AppModule { }
