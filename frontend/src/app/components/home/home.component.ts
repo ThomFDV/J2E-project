@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     this.gifService.getTrendingGif().subscribe((res) => {
       this.gifContainer = res.data;
     }, (err) => {
-      alert(err);
+      console.log(err);
     });
   }
 
