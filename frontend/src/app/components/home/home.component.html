@@ -1,4 +1,7 @@
 <section class="container my-5">
+  <div class="text-center my-5">
+    <button mat-raised-button color="primary" (click)="openRandomGif()">Get a Random Gif</button>
+  </div>
   <div class="row justify-content-between">
     <mat-card *ngFor="let gif of gifContainer" class="custom-card m-2">
       <mat-card-header>

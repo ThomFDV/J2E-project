@@ -1,0 +1,17 @@
+<div>
+    <h1>Here's a Gif for You !</h1>
+    <mat-card class="m-2">
+        <mat-card-header>
+            <mat-card-title>{{ gifContainer.title }}</mat-card-title>
+        </mat-card-header>
+        <iframe [src]="gifContainer.embed_url | safe" class="gif-size" frameborder="0"></iframe>
+        <mat-card-actions>
+            <button mat-mini-fab color="primary" class="mr-2">
+                <mat-icon>share</mat-icon>
+            </button>
+            <button mat-mini-fab>
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

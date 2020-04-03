@@ -6,4 +6,7 @@
 .custom-card {
     width: 45%;
     background-color: #FAF5FF;
+    @media (min-width: 1024px) {
+        width: 30%;
+    }
 }

@@ -14,4 +14,8 @@ export class GifService {
   getTrendingGif(): Observable<any> {
     return this.http.get<any>(`${this.url}/trending?api_key=srIYtmKcmFU2aU1WVx5sgKsMXeART9f2&limit=6&rating=G`);
   }
+
+  getRandomGif(): Observable<any> {
+    return this.http.get<any>(`${this.url}/random?api_key=srIYtmKcmFU2aU1WVx5sgKsMXeART9f2&tag=&rating=G`);
+  }
 }
