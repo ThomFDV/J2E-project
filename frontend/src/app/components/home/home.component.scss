@@ -14,7 +14,7 @@
 
 .hero-title {
     font: 84px 'Arial Narrow', sans-serif;
-    color: #fefefe;
+    color: #ff4081;
     text-transform: uppercase;
     letter-spacing: -4px;
 }
@@ -35,41 +35,40 @@
 }
 
 .hero-title .word1 {
-    color: #dc006c;
-    margin-right: -38px;
-    transform: rotateY(180deg);
-    display: inline-block;
+    color: #3f51b5;
     z-index: 10;
 }
 
 .hero-title .word1:before {
     right: 0;
     top: 0;
-    border-top-color: #282828;
-    border-right-color: #282828;
+    border-top-color: #f6f0ea;
+    border-right-color: #f6f0ea;
 }
 
 .hero-title .word1:after {
     left: -10px;
-    bottom: 20px;
-    border-bottom-color: #282828;
-    border-left-color: #282828;
+    bottom: 15px;
+    border-bottom-color: #f6f0ea;
+    border-left-color: #f6f0ea;
 }
 
 .hero-title .word2 {
     z-index: 0;
+    display: inline-block;
+    transform: rotateY(180deg);
 }
 
 .hero-title .word2:before {
-    left: -4px;
-    top: -6px;
-    border-top-color: #282828;
-    border-left-color: #282828;
+    left: -10px;
+    top: 15px;
+    border-top-color: #f6f0ea;
+    border-left-color: #f6f0ea;
 }
 
 .hero-title .word2:after {
     right: -4px;
     bottom: 4px;
-    border-bottom-color: #282828;
-    border-right-color: #282828;
+    border-bottom-color: #f6f0ea;
+    border-right-color: #f6f0ea;
 }
