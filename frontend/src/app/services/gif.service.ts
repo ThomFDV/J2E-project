@@ -11,8 +11,8 @@ export class GifService {
 
   constructor(private http: HttpClient) { }
 
-  getTrendingGif(): Observable<any> {
-    return this.http.get<any>(`${this.url}/trending?api_key=srIYtmKcmFU2aU1WVx5sgKsMXeART9f2&limit=6&rating=G`);
+  getTrendingGif(limit): Observable<any> {
+    return this.http.get<any>(`${this.url}/trending?api_key=srIYtmKcmFU2aU1WVx5sgKsMXeART9f2&limit=${limit}&rating=G`);
   }
 
   getRandomGif(): Observable<any> {

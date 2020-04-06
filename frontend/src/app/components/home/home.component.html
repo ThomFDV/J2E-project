@@ -9,9 +9,9 @@
   <div class="row justify-content-between">
     <mat-card *ngFor="let gif of gifContainer" class="custom-card m-2">
       <mat-card-header>
-        <mat-card-title>{{ gif.title }}</mat-card-title>
+        <mat-card-title>{{ gif?.title }}</mat-card-title>
       </mat-card-header>
-        <iframe [src]="gif.embed_url | safe" class="gif-size" frameborder="0"></iframe>
+        <iframe [src]="gif?.embed_url | safe" class="gif-size" frameborder="0"></iframe>
       <mat-card-actions>
         <button mat-mini-fab color="primary" class="mr-2">
           <mat-icon>share</mat-icon>
@@ -21,5 +21,14 @@
         </button>
       </mat-card-actions>
     </mat-card>
+
+    <div
+      *ngIf="gifLength < 36"
+      class="w-100"
+      infiniteScroll
+      [infiniteScrollDistance]="10"
+      [infiniteScrollThrottle]="3000"
+      (scrolled)="onScroll()">
+    </div>
   </div>
 </section>
