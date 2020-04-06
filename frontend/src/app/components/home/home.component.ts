@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   }
 
   onScroll() {
+    if (this.gifLength >= 36) return;
+
     this.gifLength += 6;
     this.gifService.getTrendingGif(this.gifLength).subscribe((res) => {
       this.gifContainer = this.gifContainer.concat(res.data);
