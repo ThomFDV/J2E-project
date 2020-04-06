@@ -34,7 +34,9 @@ export class HomeComponent implements OnInit {
 
     this.gifLength += 6;
     this.gifService.getTrendingGif(this.gifLength).subscribe((res) => {
-      this.gifContainer = this.gifContainer.concat(res.data);
+      let data = res.data;
+      data.splice(0, this.gifLength - 6);
+      this.gifContainer = this.gifContainer.concat(data);
     }, (err) => {
       console.log(err);
     })
