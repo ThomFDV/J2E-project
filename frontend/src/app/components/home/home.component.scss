@@ -6,7 +6,70 @@
 .custom-card {
     width: 45%;
     background-color: #FAF5FF;
+
     @media (min-width: 1024px) {
         width: 30%;
     }
+}
+
+.hero-title {
+    font: 84px 'Arial Narrow', sans-serif;
+    color: #fefefe;
+    text-transform: uppercase;
+    letter-spacing: -4px;
+}
+
+.hero-title span {
+    position: relative;
+}
+
+.hero-title span:before,
+.hero-title span:after {
+    content: '';
+    position: absolute;
+    border-width: 32px;
+    border-style: solid;
+    border-color: transparent;
+    height: 0;
+    z-index: 10;
+}
+
+.hero-title .word1 {
+    color: #dc006c;
+    margin-right: -38px;
+    transform: rotateY(180deg);
+    display: inline-block;
+    z-index: 10;
+}
+
+.hero-title .word1:before {
+    right: 0;
+    top: 0;
+    border-top-color: #282828;
+    border-right-color: #282828;
+}
+
+.hero-title .word1:after {
+    left: -10px;
+    bottom: 20px;
+    border-bottom-color: #282828;
+    border-left-color: #282828;
+}
+
+.hero-title .word2 {
+    z-index: 0;
+}
+
+.hero-title .word2:before {
+    left: -4px;
+    top: -6px;
+    border-top-color: #282828;
+    border-left-color: #282828;
+}
+
+.hero-title .word2:after {
+    right: -4px;
+    bottom: 4px;
+    border-bottom-color: #282828;
+    border-right-color: #282828;
 }
