@@ -1,11 +1,14 @@
 <section class="container my-5">
-  <div class="text-center">
-    <mat-form-field class="col-6" appearance="outline">
+  <div class="d-flex justify-content-center align-items-center">
+    <mat-form-field class="col-6 m-0" color="accent" appearance="outline">
       <mat-label>Search a Gif</mat-label>
       <input matInput placeholder="Happy">
     </mat-form-field>
+    <button mat-mini-fab color="primary">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
   </div>
-  <div class="text-center mt-5 mb-3">
+  <div class="text-center mt-4 mb-3">
     <button mat-raised-button color="primary" (click)="openRandomGif()">Get a Random Gif</button>
   </div>
   <h1 class="hero-title text-center">

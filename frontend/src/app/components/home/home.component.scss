@@ -72,3 +72,11 @@
     border-bottom-color: #f6f0ea;
     border-right-color: #f6f0ea;
 }
+
+.mat-form-field-wrapper {
+    margin: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0 !important;
+}
