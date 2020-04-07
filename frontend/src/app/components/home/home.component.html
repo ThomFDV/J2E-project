@@ -1,12 +1,18 @@
 <section class="container my-5">
-  <div class="d-flex justify-content-center align-items-center">
-    <mat-form-field class="col-6 m-0" color="accent" appearance="outline">
-      <mat-label>Search a Gif</mat-label>
-      <input matInput placeholder="Happy">
-    </mat-form-field>
-    <button mat-mini-fab color="primary">
-      <mat-icon>arrow_forward</mat-icon>
-    </button>
+  <div>
+    <form
+      class="d-flex justify-content-center align-items-center"
+      [formGroup]="searchForm"
+      (ngSubmit)="searchGif()"
+    >
+      <mat-form-field class="col-6 m-0" appearance="outline">
+        <mat-label>Search a Gif</mat-label>
+        <input matInput placeholder="Happy" formControlName="searchField">
+      </mat-form-field>
+      <button mat-mini-fab color="primary">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </form>
   </div>
   <div class="text-center mt-4 mb-3">
     <button mat-raised-button color="primary" (click)="openRandomGif()">Get a Random Gif</button>

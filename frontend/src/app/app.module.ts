@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SafePipe } from './safe.pipe';
 import { RandomGifComponent } from './components/home/random-gif/random-gif.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     BrowserAnimationsModule,
     HttpClientModule,
     InfiniteScrollModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,

@@ -7,15 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class GifService {
 
-  url = "https://api.giphy.com/v1/gifs"
+  url = "https://api.giphy.com/v1/gifs";
+  apiKey = "api_key=srIYtmKcmFU2aU1WVx5sgKsMXeART9f2";
 
   constructor(private http: HttpClient) { }
 
-  getTrendingGif(limit): Observable<any> {
-    return this.http.get<any>(`${this.url}/trending?api_key=srIYtmKcmFU2aU1WVx5sgKsMXeART9f2&limit=${limit}&rating=G`);
+  getTrendingGif(limit: Number): Observable<any> {
+    return this.http.get<any>(`${this.url}/trending?${this.apiKey}&limit=${limit}&rating=G`);
   }
 
   getRandomGif(): Observable<any> {
-    return this.http.get<any>(`${this.url}/random?api_key=srIYtmKcmFU2aU1WVx5sgKsMXeART9f2&tag=&rating=G`);
+    return this.http.get<any>(`${this.url}/random?${this.apiKey}&tag=&rating=G`);
+  }
+
+  getSearchGif(querry: String, limit: Number): Observable<any> {
+    return this.http.get<any>(`${this.url}/search?${this.apiKey}&q=${querry}&limit=${limit}&offset=0&rating=G&lang=en`);
   }
 }

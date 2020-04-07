@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GifService } from 'src/app/services/gif.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RandomGifComponent } from './random-gif/random-gif.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +13,16 @@ export class HomeComponent implements OnInit {
 
   gifContainer: any[] = [];
   gifLength: number = 0;
+  searchForm: FormGroup;
 
   constructor(private gifService: GifService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.searchForm = this.fb.group({
+      searchField: []
+    })
     this.gifService.getTrendingGif(6).subscribe((res) => {
       this.gifContainer = res.data;
       this.gifLength += 6;
@@ -40,6 +46,10 @@ export class HomeComponent implements OnInit {
     }, (err) => {
       console.log(err);
     })
+  }
+
+  searchGif() {
+    console.log(`searched ${this.searchForm.get('searchField').value}!`);
   }
 
 }
