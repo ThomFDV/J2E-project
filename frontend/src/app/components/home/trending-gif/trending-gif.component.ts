@@ -10,6 +10,7 @@ export class TrendingGifComponent implements OnInit {
 
   gifContainer: any[] = [];
   gifLength: number = 0;
+  displayEnd: boolean = false;
 
   constructor(private gifService: GifService) { }
 
@@ -23,7 +24,10 @@ export class TrendingGifComponent implements OnInit {
   }
 
   onScroll() {
-    if (this.gifLength >= 36) return;
+    if (this.gifLength >= 36) {
+      this.displayEnd = true;
+      return;
+    }
 
     this.gifLength += 6;
     this.gifService.getTrendingGif(this.gifLength).subscribe((res) => {

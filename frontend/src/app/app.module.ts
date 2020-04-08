@@ -17,6 +17,7 @@ import { RandomGifComponent } from './components/home/random-gif/random-gif.comp
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrendingGifComponent } from './components/home/trending-gif/trending-gif.component';
+import { SearchGifComponent } from './components/home/search-gif/search-gif.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TrendingGifComponent } from './components/home/trending-gif/trending-gi
     HomeComponent,
     SafePipe,
     RandomGifComponent,
-    TrendingGifComponent
+    TrendingGifComponent,
+    SearchGifComponent
   ],
   imports: [
     BrowserModule,
