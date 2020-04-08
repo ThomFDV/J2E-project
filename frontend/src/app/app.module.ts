@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HomeComponent } from './components/home/home.component';
 import { SafePipe } from './safe.pipe';
 import { RandomGifComponent } from './components/home/random-gif/random-gif.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RandomGifComponent } from './components/home/random-gif/random-gif.comp
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    InfiniteScrollModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
