@@ -16,13 +16,15 @@ import { SafePipe } from './safe.pipe';
 import { RandomGifComponent } from './components/home/random-gif/random-gif.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TrendingGifComponent } from './components/home/trending-gif/trending-gif.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SafePipe,
-    RandomGifComponent
+    RandomGifComponent,
+    TrendingGifComponent
   ],
   imports: [
     BrowserModule,

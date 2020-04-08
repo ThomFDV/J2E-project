@@ -1,0 +1,74 @@
+.gif-size {
+    width: 100%;
+    height: 300px;
+}
+
+.custom-card {
+    width: 45%;
+    background-color: #FAF5FF;
+
+    @media (min-width: 1024px) {
+        width: 30%;
+    }
+}
+
+.hero-title {
+    font: 84px 'Arial Narrow', sans-serif;
+    color: #ff4081;
+    text-transform: uppercase;
+    letter-spacing: -4px;
+}
+
+.hero-title span {
+    position: relative;
+}
+
+.hero-title span:before,
+.hero-title span:after {
+    content: '';
+    position: absolute;
+    border-width: 32px;
+    border-style: solid;
+    border-color: transparent;
+    height: 0;
+    z-index: 10;
+}
+
+.hero-title .word1 {
+    color: #3f51b5;
+    z-index: 10;
+}
+
+.hero-title .word1:before {
+    right: 0;
+    top: 0;
+    border-top-color: #f6f0ea;
+    border-right-color: #f6f0ea;
+}
+
+.hero-title .word1:after {
+    left: -10px;
+    bottom: 15px;
+    border-bottom-color: #f6f0ea;
+    border-left-color: #f6f0ea;
+}
+
+.hero-title .word2 {
+    z-index: 0;
+    display: inline-block;
+    transform: rotateY(180deg);
+}
+
+.hero-title .word2:before {
+    left: -10px;
+    top: 15px;
+    border-top-color: #f6f0ea;
+    border-left-color: #f6f0ea;
+}
+
+.hero-title .word2:after {
+    right: -4px;
+    bottom: 4px;
+    border-bottom-color: #f6f0ea;
+    border-right-color: #f6f0ea;
+}

@@ -11,8 +11,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
-  gifContainer: any[] = [];
-  gifLength: number = 0;
   searchForm: FormGroup;
 
   constructor(private gifService: GifService,
@@ -23,33 +21,26 @@ export class HomeComponent implements OnInit {
     this.searchForm = this.fb.group({
       searchField: []
     })
-    this.gifService.getTrendingGif(6).subscribe((res) => {
-      this.gifContainer = res.data;
-      this.gifLength += 6;
-    }, (err) => {
-      console.log(err);
-    });
   }
 
   openRandomGif() {
     this.dialog.open(RandomGifComponent);
   }
 
-  onScroll() {
-    if (this.gifLength >= 36) return;
-
-    this.gifLength += 6;
-    this.gifService.getTrendingGif(this.gifLength).subscribe((res) => {
-      let data = res.data;
-      data.splice(0, this.gifLength - 6);
-      this.gifContainer = this.gifContainer.concat(data);
-    }, (err) => {
-      console.log(err);
-    })
-  }
-
   searchGif() {
     console.log(`searched ${this.searchForm.get('searchField').value}!`);
+    this.gifService.getSearchGif(this.searchForm.get('searchField').value, 10).subscribe((res) => {
+      console.log(res.data);
+    }, (err) => {
+      console.log(err);
+    });
   }
+
+  /*
+  TODO;
+    - Split the Search and Trends in two components
+    - Put the title in a var to update the text
+    - Update the fonction to display more gif to be the same as the two components
+  */
 
 }
