@@ -1,4 +1,10 @@
 <section>
+    <a *ngIf="isSearch" class="d-flex" (click)="reset()">
+        <mat-icon class="mr-2">arrow_back</mat-icon>
+        <span>
+            Back to Trending Gifs
+        </span>
+    </a>
     <div>
         <form
             class="d-flex justify-content-center align-items-center"
@@ -44,7 +50,7 @@
                 (scrolled)="onScroll()">
             </div>
             <div *ngIf="displayEnd" class="alert alert-warning text-center w-100 my-4" role="alert">
-                You reach the max amount of gif to load, please search a Gif if you looking for a specific one
+                You reach the max amount of gif to load, please search with other words to be more specific
             </div>
         </div>
     </div>

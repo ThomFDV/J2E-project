@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
   receiveSearch($event) {
     this.isSearch = $event;
-    console.log($event);
   }
 
 }

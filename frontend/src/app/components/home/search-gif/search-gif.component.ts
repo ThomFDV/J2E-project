@@ -52,4 +52,9 @@ export class SearchGifComponent implements OnInit {
     })
   }
 
+  reset() {
+    this.isSearch = false;
+    this.searchEvent.emit(false);
+  }
+
 }
