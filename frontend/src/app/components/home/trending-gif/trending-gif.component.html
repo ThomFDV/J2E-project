@@ -1,0 +1,34 @@
+<section>
+    <h1 class="hero-title text-center">
+        <span class="word1">Trending</span>
+        <span class="word2">Gifs</span>
+    </h1>
+    <div class="row justify-content-between">
+        <mat-card *ngFor="let gif of gifContainer" class="custom-card m-2">
+            <mat-card-header>
+                <mat-card-title>{{ gif?.title }}</mat-card-title>
+            </mat-card-header>
+            <iframe [src]="gif?.embed_url | safe" class="gif-size" frameborder="0"></iframe>
+            <mat-card-actions>
+                <button mat-mini-fab color="primary" class="mr-2">
+                    <mat-icon>share</mat-icon>
+                </button>
+                <button mat-mini-fab>
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+
+        <div
+            *ngIf="!displayEnd"
+            class="w-100 mt-5"
+            infiniteScroll
+            [infiniteScrollDistance]="0"
+            [infiniteScrollThrottle]="1000"
+            (scrolled)="onScroll()">
+        </div>
+        <div *ngIf="displayEnd" class="alert alert-warning text-center w-100 my-4" role="alert">
+            You reach the max amount of gif to load, please search a Gif if you looking for a specific one
+        </div>
+    </div>
+</section>

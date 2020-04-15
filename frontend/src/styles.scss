@@ -7,3 +7,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #f6f0ea;
     background-image: linear-gradient(330deg, #f1dfd1 0%, #f6f0ea 70%);
 }
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    opacity: 1 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: #3f51b5;
+}
