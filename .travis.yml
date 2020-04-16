@@ -1,7 +1,14 @@
-language: java
-jdk: oraclejdk11
+language: node_js
+node_js:
+  - "12.16.1"
+jdk:
+  - oraclejdk11
 script:
   - chmod +x backend/mvnw
   - cd backend && ./mvnw -q clean install
   - ./mvnw test -B
   - ./mvnw -q spring-boot:run &
+  - cd ../frontend && npm i
+  #    - npm test
+  - npm run build --prod
+#    - npm run e2e
