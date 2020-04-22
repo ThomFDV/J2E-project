@@ -21,7 +21,7 @@ deploy:
     skip_cleanup: true
     local_dir: frontend/dist/frontend
     on:
-      branch: feat/Add-Travis-CD
+      branch: master
   - provider: elasticbeanstalk
     access_key_id: $AWS_ACCESS_ID
     secret_access_key: $AWS_ACCESS_SECRET_KEY
@@ -32,4 +32,4 @@ deploy:
     skip_cleanup: true
     zip_file: "backend/target/backend-jar.zip"
     on:
-      branch: feat/Add-Travis-CD
+      branch: master
