@@ -9,6 +9,14 @@ script:
   - ./mvnw test -B
   - ./mvnw -q spring-boot:run &
   - cd ../frontend && npm i
-  #    - npm test
   - npm run build --prod
-#    - npm run e2e
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_ID
+  secret_access_key: $AWS_ACCESS_SECRET_KEY
+  bucket: j2e-project-front
+  region: eu-west-3
+  skip_cleanup: true
+  local_dir: dist/frontend
+  on:
+    branch: feat/Add-Travis-CD
