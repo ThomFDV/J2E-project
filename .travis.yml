@@ -9,7 +9,7 @@ script:
   - ./mvnw test -B
   - ./mvnw -q spring-boot:run &
   - cd target && zip -r backend-jar.zip *.jar
-  - cd ../frontend && npm i
+  - cd ../../frontend && npm i
   - npm run build --prod
   - cd ..
 deploy:
