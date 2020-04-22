@@ -15,23 +15,23 @@ before_deploy:
   - zip -r backend-jar.zip *.jar
   - cd ../..
 deploy:
-  # - provider: s3
-  #   access_key_id: $AWS_ACCESS_ID
-  #   secret_access_key: $AWS_ACCESS_SECRET_KEY
-  #   bucket: j2e-project-front
-  #   region: eu-west-3
-  #   skip_cleanup: true
-  #   local_dir: dist/frontend
-  #   on:
-  #     branch: feat/Add-Travis-CD
-  provider: elasticbeanstalk
-  access_key_id: $AWS_ACCESS_ID
-  secret_access_key: $AWS_ACCESS_SECRET_KEY
-  app: j2e-project-backend
-  env: J2eProjectBackend-env
-  bucket_name: elasticbeanstalk-eu-west-3-623081384592
-  region: eu-west-3
-  skip_cleanup: true
-  zip_file: "backend/target/backend-jar.zip"
-  on:
-    branch: feat/Add-Travis-CD
+  - provider: s3
+    access_key_id: $AWS_ACCESS_ID
+    secret_access_key: $AWS_ACCESS_SECRET_KEY
+    bucket: j2e-project-front
+    region: eu-west-3
+    skip_cleanup: true
+    local_dir: frontend/dist/frontend
+    on:
+      branch: feat/Add-Travis-CD
+  - provider: elasticbeanstalk
+    access_key_id: $AWS_ACCESS_ID
+    secret_access_key: $AWS_ACCESS_SECRET_KEY
+    app: j2e-project-backend
+    env: J2eProjectBackend-env
+    bucket_name: elasticbeanstalk-eu-west-3-623081384592
+    region: eu-west-3
+    skip_cleanup: true
+    zip_file: "backend/target/backend-jar.zip"
+    on:
+      branch: feat/Add-Travis-CD
