@@ -8,7 +8,28 @@ script:
   - cd backend && ./mvnw -q clean install
   - ./mvnw test -B
   - ./mvnw -q spring-boot:run &
-  - cd ../frontend && npm i
-  #    - npm test
+  - cd target && zip -r backend-jar.zip *.jar
+  - cd ../../frontend && npm i
   - npm run build --prod
-#    - npm run e2e
+  - cd ..
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_ID
+    secret_access_key: $AWS_ACCESS_SECRET_KEY
+    bucket: j2e-project-front
+    region: eu-west-3
+    skip_cleanup: true
+    local_dir: frontend/dist/frontend
+    on:
+      branch: master
+  - provider: elasticbeanstalk
+    access_key_id: $AWS_ACCESS_ID
+    secret_access_key: $AWS_ACCESS_SECRET_KEY
+    app: j2e-project-backend
+    env: J2eProjectBackend-env
+    bucket_name: elasticbeanstalk-eu-west-3-623081384592
+    region: eu-west-3
+    skip_cleanup: true
+    zip_file: "backend/target/backend-jar.zip"
+    on:
+      branch: master
