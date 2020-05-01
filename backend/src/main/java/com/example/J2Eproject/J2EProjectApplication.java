@@ -1,5 +1,7 @@
 package com.example.J2Eproject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,5 +19,4 @@ public class J2EProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(J2EProjectApplication.class, args);
 	}
-
 }
