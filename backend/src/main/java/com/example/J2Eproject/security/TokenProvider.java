@@ -25,7 +25,7 @@ public class TokenProvider {
     private final long tokenValidityInMilliseconds = Duration.ofMinutes(5).getSeconds() * 1000;
     private final byte[] secret;
 
-    public TokenProvider(@Value("${security.token.secret}") CharSequence secret) {
+    public TokenProvider(@Value("${jwt.secret}") CharSequence secret) {
         this.secret = secret.toString().getBytes();
     }
 
