@@ -1,6 +1,7 @@
 package com.example.J2Eproject.login;
 
 import com.example.J2Eproject.security.TokenProvider;
+import net.minidev.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,8 @@ public class AuthenticationController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + token);
 
-        return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+        JSONObject jsonToken = new JSONObject();
+        jsonToken.put("token", token);
+        return new ResponseEntity<>(jsonToken, httpHeaders, HttpStatus.OK);
     }
 }
