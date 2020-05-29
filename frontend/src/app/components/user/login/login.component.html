@@ -1,4 +1,4 @@
-<section>
+<section class="full-height">
     <h1 class="hero-title text-center">
         <span class="word1">Login</span>
     </h1>
@@ -17,7 +17,14 @@
                     <mat-form-field appearance="outline" class="my-3">
                         <mat-label>Enter your password</mat-label>
                         <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <button 
+                            mat-icon-button
+                            matSuffix
+                            (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide"
+                            type="button"
+                        >
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
