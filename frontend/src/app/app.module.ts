@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './components/home/home.component';
 import { SafePipe } from './safe.pipe';
 import { RandomGifComponent } from './components/home/random-gif/random-gif.component';
@@ -18,6 +19,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrendingGifComponent } from './components/home/trending-gif/trending-gif.component';
 import { SearchGifComponent } from './components/home/search-gif/search-gif.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegisterComponent } from './components/user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { SearchGifComponent } from './components/home/search-gif/search-gif.comp
     SafePipe,
     RandomGifComponent,
     TrendingGifComponent,
-    SearchGifComponent
+    SearchGifComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { SearchGifComponent } from './components/home/search-gif/search-gif.comp
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],
