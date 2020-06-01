@@ -1,7 +1,7 @@
 package com.example.J2Eproject.user;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,24 +12,36 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserRepository repository;
-    private PasswordEncoder passwordEncoder;
+    private final UserService service;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserRepository repository, PasswordEncoder passwordEncoder) {
-        this.repository = repository;
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+        this.service = userService;
         this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return repository.findAll();
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(service.getAll());
     }
-//
-//    @GetMapping("/{id}")
-//    public User getUserById(@PathVariable("id") ObjectId id) {
-//        return repository.findById(id);
-//    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable("id") String id) {
+        return service.getById(id)
+                .map(this::toDto)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    private ResponseEntity<UserDTO> toDto(User user) {
+        var body = new UserDTO();
+        body.setUsername(user.getUsername());
+        body.setEmail(user.getEmail());
+        body.setFirstName(user.getFirstName());
+        body.setLastName(user.getLastName());
+        return ResponseEntity.ok(body);
+    }
+
 //
 //    @PutMapping("/{id}")
 //    public void updateUserById(@PathVariable("id") ObjectId id, @Valid @RequestBody User user) {
@@ -38,12 +50,14 @@ public class UserController {
 //    }
 
     @PostMapping()
-    public User createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody User user) {
         //user.setId(ObjectId.get());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of("USER"));
-        repository.save(user);
-        return user;
+
+        var u = service.add(user);
+
+        return toDto(u);
     }
 
 //    @DeleteMapping("/{id}")
