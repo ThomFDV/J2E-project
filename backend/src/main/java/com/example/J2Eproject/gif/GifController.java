@@ -1,33 +1,54 @@
 package com.example.J2Eproject.gif;
 
+import com.example.J2Eproject.security.JWTAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/gif")
 public class GifController {
 
-    private GifRepository repository;
+    private final GifService service;
 
     @Autowired
-    public GifController(GifRepository repository) {
-        this.repository = repository;
+    public GifController(GifService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<GifDTO> AddToFavorite(HttpServletRequest httpServletRequest, @RequestBody @Valid GifDTO gifDTO) {
-        var gif = new Gif()
-                .setName(gifDTO.getName())
-                .setUrl(gifDTO.getUrl());
-        repository.save(gif);
-        return ResponseEntity.status(HttpStatus.CREATED).body(gifDTO);
+    public ResponseEntity<?> AddToFavorite(HttpServletRequest httpServletRequest, @RequestBody @Valid GifDTO gifDTO, UriComponentsBuilder uriBuilder) {
+        //add the user
+        var gif = service.add(gifDTO.getName(), gifDTO.getUrl());
+
+        if (gif == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        URI uri = uriBuilder.path("/gif/{gifId}").buildAndExpand(gif.get_id()).toUri();
+
+        return ResponseEntity.created(uri).build();
+    }
+
+    @GetMapping("/{gifId}")
+    public ResponseEntity<GifDTO> getGif(@PathVariable("gifId") String gifId) {
+        return service
+                .getById(gifId)
+                .map(this::toDto)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    private ResponseEntity<GifDTO> toDto(Gif gif) {
+        var body = new GifDTO();
+        body.setName(gif.getName());
+        body.setUrl(gif.getUrl());
+
+        return ResponseEntity.ok(body);
     }
 }

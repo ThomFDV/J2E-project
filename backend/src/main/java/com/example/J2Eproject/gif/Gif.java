@@ -1,15 +1,16 @@
 package com.example.J2Eproject.gif;
 
-import com.example.J2Eproject.user.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 
-import java.util.List;
 
 @Data
 @Accessors(chain = true)
 public class Gif {
+    @Id
+    private ObjectId _id;
     private String url;
     private String name;
-    private List<User> users;
 }
