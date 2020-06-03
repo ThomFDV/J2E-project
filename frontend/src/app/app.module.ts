@@ -21,10 +21,7 @@ import { TrendingGifComponent } from './components/home/trending-gif/trending-gi
 import { SearchGifComponent } from './components/home/search-gif/search-gif.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
-<<<<<<< HEAD
 import { AccountComponent } from './components/user/account/account.component';
-=======
->>>>>>> 30130e9b92ed7e47ff4015ae32f40e521b56262a
 
 @NgModule({
   declarations: [

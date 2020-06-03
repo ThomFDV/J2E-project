@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
 import { HttpHeaders } from '@angular/common/http';
-=======
->>>>>>> 30130e9b92ed7e47ff4015ae32f40e521b56262a
 
 @Injectable({
   providedIn: 'root'
