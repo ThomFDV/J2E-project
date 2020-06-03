@@ -1,11 +1,15 @@
 package com.example.J2Eproject.user;
 
+import com.example.J2Eproject.security.JWTAuthenticationFilter;
+import com.example.J2Eproject.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -56,8 +60,13 @@ public class UserController {
         user.setRoles(List.of("USER"));
 
         var u = service.add(user);
-
         return toDto(u);
+    }
+
+    @GetMapping("/profile")
+    @ResponseBody
+    public String currentUserDetails(Principal principal) {
+        return principal.getName();
     }
 
 //    @DeleteMapping("/{id}")

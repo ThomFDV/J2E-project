@@ -29,4 +29,10 @@ export class UserService {
         })
     });
   }
+
+  getProfile() {
+    // return this.http.get(`${this.backendUrl}profile`, {
+    //   headers: this.token.getHeaderToken()
+    // });
+  }
 }
