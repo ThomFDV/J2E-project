@@ -63,12 +63,6 @@ public class UserController {
         return toDto(u);
     }
 
-    @GetMapping("/profile")
-    @ResponseBody
-    public String currentUserDetails(Principal principal) {
-        return principal.getName();
-    }
-
 //    @DeleteMapping("/{id}")
 //    public void deleteUser(@PathVariable ObjectId id) {
 //        repository.delete(repository.findById(id));

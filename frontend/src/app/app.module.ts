@@ -21,7 +21,6 @@ import { TrendingGifComponent } from './components/home/trending-gif/trending-gi
 import { SearchGifComponent } from './components/home/search-gif/search-gif.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
-import { AccountComponent } from './components/user/account/account.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { AccountComponent } from './components/user/account/account.component';
     TrendingGifComponent,
     SearchGifComponent,
     LoginComponent,
-    RegisterComponent,
-    AccountComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

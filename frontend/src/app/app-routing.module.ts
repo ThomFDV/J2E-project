@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
-import { AccountComponent } from './components/user/account/account.component';
 
 
 const routes: Routes = [
@@ -18,11 +17,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'profile',
-    component: AccountComponent
-  },
+  }
 ];
 
 @NgModule({
