@@ -24,9 +24,14 @@ export class UserService {
       return this.http.post(`${this.backendUrl}/auth/login`, { username, password })
         .subscribe((data: any) => {
           observer.next(data);
-          this.token.saveToken(data.token);
+          this.token.saveToken(data.accessToken);
           observer.complete();
         })
     });
+  }
+
+  getProfile() {
+    const authHeader = { headers: this.token.getHeaderToken() };
+    return this.http.get(`${this.backendUrl}/user/profile`, authHeader);
   }
 }
