@@ -1,5 +1,6 @@
 package com.example.J2Eproject.user;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,9 +8,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -17,6 +21,12 @@ public class UserController {
 
     private final UserService service;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @Autowired
     public UserController(UserService userService, PasswordEncoder passwordEncoder) {
@@ -49,17 +59,22 @@ public class UserController {
     public ResponseEntity getUserDetails() {
         UserDetails userDetails =
                 (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         return ResponseEntity.ok(userDetails);
     }
 
-//
-//    @PutMapping("/{id}")
-//    public void updateUserById(@PathVariable("id") ObjectId id, @Valid @RequestBody User user) {
-//        user.setId(id);
-//        repository.save(user);
-//    }
+
+    @PutMapping("/{userId}")
+    public User updateUserById(@PathVariable ObjectId userId, @RequestBody UserDTO user) {
+        return userRepository.findById(userId).map(userFound -> {
+            if (user.getEmail() != null) userFound.setEmail(user.getEmail());
+            if (user.getUsername() != null) userFound.setUsername(user.getUsername());
+            if (user.getFirstName() != null) userFound.setFirstName(user.getFirstName());
+            if (user.getLastName() != null) userFound.setLastName(user.getLastName());
+            if (user.getPassword() != null) userFound.setPassword(encoder.encode(user.getPassword()));
+            return userRepository.save(userFound);
+        }).orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
+    }
 
 //    @DeleteMapping("/{id}")
 //    public void deleteUser(@PathVariable ObjectId id) {
