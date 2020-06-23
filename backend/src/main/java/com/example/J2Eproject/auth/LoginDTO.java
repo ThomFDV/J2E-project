@@ -1,4 +1,4 @@
-package com.example.J2Eproject.login;
+package com.example.J2Eproject.auth;
 
 public class LoginDTO {
     private String username;

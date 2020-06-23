@@ -1,15 +1,14 @@
 package com.example.J2Eproject.user;
 
-import com.example.J2Eproject.security.JWTAuthenticationFilter;
-import com.example.J2Eproject.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -46,22 +45,21 @@ public class UserController {
         return ResponseEntity.ok(body);
     }
 
+    @GetMapping("/profile")
+    public ResponseEntity getUserDetails() {
+        UserDetails userDetails =
+                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        return ResponseEntity.ok(userDetails);
+    }
+
 //
 //    @PutMapping("/{id}")
 //    public void updateUserById(@PathVariable("id") ObjectId id, @Valid @RequestBody User user) {
 //        user.setId(id);
 //        repository.save(user);
 //    }
-
-    @PostMapping()
-    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody User user) {
-        //user.setId(ObjectId.get());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(List.of("USER"));
-
-        var u = service.add(user);
-        return toDto(u);
-    }
 
 //    @DeleteMapping("/{id}")
 //    public void deleteUser(@PathVariable ObjectId id) {
