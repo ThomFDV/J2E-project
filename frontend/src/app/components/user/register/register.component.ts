@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
       username: [],
       password: [],
       firstName: [],
-      lastName: []
+      lastName: [],
+      role: [["user"]]
     })
   }
 
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.userService.register(this.registerForm.value)
-      .subscribe(data => {
+      .subscribe(() => {
         return alert("logged in!");
       })
     console.log(`Registerred ${this.registerForm.get('username').value}!`);
