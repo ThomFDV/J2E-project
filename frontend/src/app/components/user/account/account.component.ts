@@ -38,9 +38,15 @@ export class AccountComponent implements OnInit {
   }
 
   updateProfile() {
-    console.log(this.updateForm.value);
-    console.log(this.connectedUser.id);
-    this.updateForm.reset();
+    this.userService.updateProfile(this.updateForm.value, this.connectedUser.id)
+      .subscribe(() => {
+        this.updateForm.reset();
+        this.getProfile();
+        this.opennedForm.fill(false)
+        alert("Account updated!");
+      }, (err) => {
+        alert(JSON.stringify(err));
+      });
   }
 
 }

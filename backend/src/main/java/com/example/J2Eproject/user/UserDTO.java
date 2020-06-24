@@ -4,6 +4,7 @@ import lombok.Data;
 
 public class UserDTO {
 
+    private String id;
     private String email;
     private String username;
     private String firstName;
@@ -13,12 +14,21 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String email, String username, String firstName, String lastName, String password) {
+    public UserDTO(String id, String email, String username, String firstName, String lastName, String password) {
+        this.id = id;
         this.email = email;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {

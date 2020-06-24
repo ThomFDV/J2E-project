@@ -34,4 +34,14 @@ export class UserService {
     const authHeader = { headers: this.token.getHeaderToken() };
     return this.http.get(`${this.backendUrl}/user/profile`, authHeader);
   }
+
+  updateProfile(user: User, userId: Number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.token.getToken()
+        })
+    };
+    return this.http.put(`${this.backendUrl}/user/${userId}`, user, httpOptions);
+  }
 }

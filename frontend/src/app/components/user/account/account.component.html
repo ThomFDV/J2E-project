@@ -1,10 +1,10 @@
 <section class="full-height">
-    <h1 class="hero-title text-center">
+    <h1 class="hero-title text-center pt-5">
         <span class="word1">Profile</span>
     </h1>
-    <div class="row">
+    <div class="d-flex" >
         <mat-card class="col-6 mx-auto my-4">
-            <div class="d-flex">
+            <div class="d-flex mt-4">
                 <h5 class="my-auto mr-2">Email: </h5>
                 <p class="my-auto mr-2">{{ connectedUser?.email }}</p>
                 <ng-container *ngIf="!opennedForm[0]; else elseTemplate">
@@ -45,7 +45,7 @@
                     </button>
                 </form>
             </div>
-            <div class="d-flex align-items-baseline">
+            <div class="d-flex mt-4">
                 <h5 class="my-auto mr-2">Username: </h5>
                 <p class="my-auto mr-2">{{ connectedUser?.username }}</p>
                 <ng-container *ngIf="!opennedForm[1]; else elseTemplate">
@@ -86,7 +86,7 @@
                     </button>
                 </form>
             </div>
-            <div class="d-flex align-items-baseline">
+            <div class="d-flex mt-4">
                 <h5 class="my-auto mr-2">Firstname: </h5>
                 <p class="my-auto mr-2">{{ connectedUser?.firstName }}</p>
                 <ng-container *ngIf="!opennedForm[2]; else elseTemplate">
@@ -106,8 +106,8 @@
                 </ng-template>
                 <form *ngIf="opennedForm[2]" [formGroup]="updateForm" (ngSubmit)="updateProfile()">
                     <mat-form-field appearance="outline">
-                        <mat-label>New email</mat-label>
-                        <input matInput placeholder="email@gmail.com" formControlName="email">
+                        <mat-label>New firstName</mat-label>
+                        <input matInput placeholder="MyName" formControlName="firstName">
                     </mat-form-field>
                     <button mat-mini-fab
                         color="primary"
@@ -127,7 +127,7 @@
                     </button>
                 </form>
             </div>
-            <div class="d-flex align-items-baseline">
+            <div class="d-flex my-4">
                 <h5 class="my-auto mr-2">Lastname: </h5>
                 <p class="my-auto mr-2">{{ connectedUser?.lastName }}</p>
                 <ng-container *ngIf="!opennedForm[3]; else elseTemplate">
@@ -147,8 +147,8 @@
                 </ng-template>
                 <form *ngIf="opennedForm[3]" [formGroup]="updateForm" (ngSubmit)="updateProfile()">
                     <mat-form-field appearance="outline">
-                        <mat-label>New email</mat-label>
-                        <input matInput placeholder="email@gmail.com" formControlName="email">
+                        <mat-label>New LastName</mat-label>
+                        <input matInput placeholder="My LastName" formControlName="lastName">
                     </mat-form-field>
                     <button mat-mini-fab
                         color="primary"
