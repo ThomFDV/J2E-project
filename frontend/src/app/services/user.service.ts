@@ -30,6 +30,14 @@ export class UserService {
     });
   }
 
+  isLoggedIn(): boolean {
+    return this.token.getToken() !== null;
+  }
+
+  disconnect() {
+    this.token.signOut();
+  }
+
   getProfile() {
     const authHeader = { headers: this.token.getHeaderToken() };
     return this.http.get(`${this.backendUrl}/user/profile`, authHeader);
