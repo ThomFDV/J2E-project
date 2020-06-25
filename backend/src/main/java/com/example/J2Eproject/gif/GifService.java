@@ -24,5 +24,9 @@ public class GifService {
         return repository.findById(id);
     }
 
+    public Boolean canAdd(GifDTO gifDTO) {
+        return repository.findByName(gifDTO.getName()).isPresent() && repository.findByUrl(gifDTO.getUrl()).isPresent();
+    }
+
 
 }

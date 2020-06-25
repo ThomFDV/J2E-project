@@ -23,7 +23,11 @@ public class GifController {
     }
 
     @PostMapping
-    public ResponseEntity<?> AddToFavorite(HttpServletRequest httpServletRequest, @RequestBody @Valid GifDTO gifDTO, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<?> AddToFavorite(@RequestBody @Valid GifDTO gifDTO, UriComponentsBuilder uriBuilder) {
+        if (gifDTO.getName().isEmpty() || gifDTO.getUrl().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         //add the user
         var gif = service.add(gifDTO.getName(), gifDTO.getUrl());
 

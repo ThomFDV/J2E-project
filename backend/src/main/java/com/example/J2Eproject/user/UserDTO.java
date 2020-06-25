@@ -1,7 +1,5 @@
 package com.example.J2Eproject.user;
 
-import java.util.List;
-
 public class UserDTO {
 
     private String email;
@@ -23,5 +21,21 @@ public class UserDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }

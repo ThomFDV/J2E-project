@@ -52,6 +52,7 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody User user) {
         //user.setId(ObjectId.get());
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of("USER"));
 
