@@ -1,0 +1,173 @@
+<section class="full-height">
+    <h1 class="hero-title text-center pt-5">
+        <span class="word1">Profile</span>
+    </h1>
+    <div class="d-flex" >
+        <mat-card class="col-6 mx-auto my-4">
+            <div class="d-flex mt-4">
+                <h5 class="my-auto mr-2">Email: </h5>
+                <p class="my-auto mr-2">{{ connectedUser?.email }}</p>
+                <ng-container *ngIf="!opennedForm[0]; else elseTemplate">
+                    <button mat-icon-button
+                        color="accent"
+                        aria-label="Button to edit the field"
+                        (click)="opennedForm[0] = !opennedForm[0]"
+                        class="my-auto mr-2"
+                    >
+                        <mat-icon>create</mat-icon>
+                    </button>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <button mat-icon-button color="accent" class="my-auto mr-2">
+                        <mat-icon>forward</mat-icon>
+                    </button>
+                </ng-template>
+                <form *ngIf="opennedForm[0]" [formGroup]="updateForm" (ngSubmit)="updateProfile()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>New email</mat-label>
+                        <input matInput placeholder="email@gmail.com" formControlName="email">
+                    </mat-form-field>
+                    <button mat-mini-fab
+                        color="primary"
+                        aria-label="Button to validate field"
+                        type="submit"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    <button mat-mini-fab
+                        color="accent"
+                        aria-label="Button to validate field"
+                        (click)="clearForm(0)"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </form>
+            </div>
+            <div class="d-flex mt-4">
+                <h5 class="my-auto mr-2">Username: </h5>
+                <p class="my-auto mr-2">{{ connectedUser?.username }}</p>
+                <ng-container *ngIf="!opennedForm[1]; else elseTemplate">
+                    <button mat-icon-button
+                        color="accent"
+                        aria-label="Button to edit the field"
+                        (click)="opennedForm[1] = !opennedForm[1]"
+                        class="my-auto mr-2"
+                    >
+                        <mat-icon>create</mat-icon>
+                    </button>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <button mat-icon-button color="accent" class="my-auto mr-2">
+                        <mat-icon>forward</mat-icon>
+                    </button>
+                </ng-template>
+                <form *ngIf="opennedForm[1]" [formGroup]="updateForm" (ngSubmit)="updateProfile()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>New Username</mat-label>
+                        <input matInput placeholder="my-username" formControlName="username">
+                    </mat-form-field>
+                    <button mat-mini-fab
+                        color="primary"
+                        aria-label="Button to validate field"
+                        type="submit"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    <button mat-mini-fab
+                        color="accent"
+                        aria-label="Button to validate field"
+                        (click)="clearForm(1)"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </form>
+            </div>
+            <div class="d-flex mt-4">
+                <h5 class="my-auto mr-2">Firstname: </h5>
+                <p class="my-auto mr-2">{{ connectedUser?.firstName }}</p>
+                <ng-container *ngIf="!opennedForm[2]; else elseTemplate">
+                    <button mat-icon-button
+                        color="accent"
+                        aria-label="Button to edit the field"
+                        (click)="opennedForm[2] = !opennedForm[2]"
+                        class="my-auto mr-2"
+                    >
+                        <mat-icon>create</mat-icon>
+                    </button>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <button mat-icon-button color="accent" class="my-auto mr-2">
+                        <mat-icon>forward</mat-icon>
+                    </button>
+                </ng-template>
+                <form *ngIf="opennedForm[2]" [formGroup]="updateForm" (ngSubmit)="updateProfile()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>New firstName</mat-label>
+                        <input matInput placeholder="MyName" formControlName="firstName">
+                    </mat-form-field>
+                    <button mat-mini-fab
+                        color="primary"
+                        aria-label="Button to validate field"
+                        type="submit"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    <button mat-mini-fab
+                        color="accent"
+                        aria-label="Button to validate field"
+                        (click)="clearForm(2)"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </form>
+            </div>
+            <div class="d-flex my-4">
+                <h5 class="my-auto mr-2">Lastname: </h5>
+                <p class="my-auto mr-2">{{ connectedUser?.lastName }}</p>
+                <ng-container *ngIf="!opennedForm[3]; else elseTemplate">
+                    <button mat-icon-button
+                        color="accent"
+                        aria-label="Button to edit the field"
+                        (click)="opennedForm[3] = !opennedForm[3]"
+                        class="my-auto mr-2"
+                    >
+                        <mat-icon>create</mat-icon>
+                    </button>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <button mat-icon-button color="accent" class="my-auto mr-2">
+                        <mat-icon>forward</mat-icon>
+                    </button>
+                </ng-template>
+                <form *ngIf="opennedForm[3]" [formGroup]="updateForm" (ngSubmit)="updateProfile()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>New LastName</mat-label>
+                        <input matInput placeholder="My LastName" formControlName="lastName">
+                    </mat-form-field>
+                    <button mat-mini-fab
+                        color="primary"
+                        aria-label="Button to validate field"
+                        type="submit"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    <button mat-mini-fab
+                        color="accent"
+                        aria-label="Button to validate field"
+                        (click)="clearForm(3)"
+                        class="my-auto ml-2"
+                    >
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+</section>
