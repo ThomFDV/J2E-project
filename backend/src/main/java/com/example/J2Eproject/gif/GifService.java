@@ -20,20 +20,14 @@ public class GifService {
         if (gif.isPresent()) {
             var toReturn = gif.get();
             toReturn.setFavorite(toReturn.getFavorite() + 1);
-            // TODO link to user
             return repository.save(gif.get());
         }
 
-        return repository.save(new Gif(gifDTO.getName(), gifDTO.getUrl(), 1));
+        return repository.save(new Gif(gifDTO.getUrl(), gifDTO.getName(), 1));
     }
 
     public Optional<Gif> getById(String id) {
         return repository.findById(id);
     }
-
-    public Boolean canAdd(GifDTO gifDTO) {
-        return repository.findByName(gifDTO.getName()).isPresent() && repository.findByUrl(gifDTO.getUrl()).isPresent();
-    }
-
 
 }
