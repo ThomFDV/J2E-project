@@ -1,26 +1,41 @@
-package com.example.J2Eproject.user;
+package com.example.J2Eproject.auth;
 
-import lombok.Data;
+import java.util.List;
 
-public class UserDTO {
-
+public class JwtResponse {
+    private String token;
+    private String type = "Bearer";
     private String id;
-    private String email;
     private String username;
     private String firstName;
     private String lastName;
-    private String password;
+    private String email;
+    private List<String> roles;
 
-    public UserDTO() {
-    }
-
-    public UserDTO(String id, String email, String username, String firstName, String lastName, String password) {
+    public JwtResponse(String token, String id, String username, String firstName, String lastName, String email, List<String> roles) {
+        this.token = token;
         this.id = id;
-        this.email = email;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.email = email;
+        this.roles = roles;
+    }
+
+    public String getAccessToken() {
+        return token;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.token = accessToken;
+    }
+
+    public String getTokenType() {
+        return type;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.type = tokenType;
     }
 
     public String getId() {
@@ -63,11 +78,7 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public List<String> getRoles() {
+        return roles;
     }
 }

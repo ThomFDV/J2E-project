@@ -1,11 +1,12 @@
 package com.example.J2Eproject.user;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -14,6 +15,12 @@ public class UserController {
 
     private final UserService service;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @Autowired
     public UserController(UserService userService, PasswordEncoder passwordEncoder) {
@@ -42,23 +49,26 @@ public class UserController {
         return ResponseEntity.ok(body);
     }
 
-//
-//    @PutMapping("/{id}")
-//    public void updateUserById(@PathVariable("id") ObjectId id, @Valid @RequestBody User user) {
-//        user.setId(id);
-//        repository.save(user);
-//    }
+    @GetMapping("/profile")
+    public User getUserDetails() {
+        UserDetailsImpl userDetails =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userId = userDetails.getId();
+        return service.getById(userId)
+                .orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
+    }
 
-    @PostMapping()
-    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody User user) {
-        //user.setId(ObjectId.get());
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(List.of("USER"));
-
-        var u = service.add(user);
-
-        return toDto(u);
+    @PutMapping("/{userId}")
+    public User updateUserById(@PathVariable ObjectId userId, @RequestBody UserDTO user) {
+        return userRepository.findById(userId).map(userFound -> {
+            if (user.getEmail() != null) userFound.setEmail(user.getEmail());
+            if (user.getUsername() != null) userFound.setUsername(user.getUsername());
+            if (user.getFirstName() != null) userFound.setFirstName(user.getFirstName());
+            if (user.getLastName() != null) userFound.setLastName(user.getLastName());
+            if (user.getPassword() != null) userFound.setPassword(encoder.encode(user.getPassword()));
+            return userRepository.save(userFound);
+        }).orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
     }
 
 //    @DeleteMapping("/{id}")
