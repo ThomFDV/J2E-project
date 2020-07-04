@@ -1,13 +1,10 @@
 package com.example.J2Eproject.gif;
 
-import com.example.J2Eproject.security.JWTAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -27,9 +24,8 @@ public class GifController {
         if (gifDTO.getName().isEmpty() || gifDTO.getUrl().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-
         //add the user
-        var gif = service.add(gifDTO.getName(), gifDTO.getUrl());
+        var gif = service.add(gifDTO);
 
         if (gif == null) {
             return ResponseEntity.notFound().build();

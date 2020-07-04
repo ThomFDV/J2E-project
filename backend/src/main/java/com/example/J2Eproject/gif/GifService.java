@@ -15,9 +15,16 @@ public class GifService {
         this.repository = repository;
     }
 
-    public Gif add(String name, String url) {
-        var gif = new Gif().setName(name).setUrl(url);
-        return repository.save(gif);
+    public Gif add(GifDTO gifDTO) {
+        var gif = repository.findByNameAndUrl(gifDTO.getName(), gifDTO.getUrl());
+        if (gif.isPresent()) {
+            var toReturn = gif.get();
+            toReturn.setFavorite(toReturn.getFavorite() + 1);
+            // TODO link to user
+            return repository.save(gif.get());
+        }
+
+        return repository.save(new Gif(gifDTO.getName(), gifDTO.getUrl(), 1));
     }
 
     public Optional<Gif> getById(String id) {

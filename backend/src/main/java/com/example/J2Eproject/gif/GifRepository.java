@@ -13,4 +13,6 @@ public interface GifRepository extends MongoRepository<Gif, String> {
 
     Optional<Gif> findByName(String name);
 
+    Optional<Gif> findByNameAndUrl(String name, String url);
+
 }
