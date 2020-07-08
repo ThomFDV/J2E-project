@@ -115,4 +115,12 @@ public class User {
     public void addGif(Gif gif) {
         this.gifs.add(gif);
     }
+
+    public void removeGif(Gif gif) {
+        this.gifs.removeIf(g -> g.get_id().equals(gif.get_id()));
+    }
+
+    public Set<Gif> getGifs() {
+        return gifs;
+    }
 }

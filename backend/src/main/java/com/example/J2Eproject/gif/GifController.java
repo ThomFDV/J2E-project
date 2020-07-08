@@ -30,16 +30,21 @@ public class GifController {
         if (gifDTO.getName().isEmpty() || gifDTO.getUrl().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-
         UserDetailsImpl userDetails =
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         var userId = userDetails.getId();
         User user = userService.getById(userId).orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
-
         var gif = service.add(gifDTO);
         if (gif == null) {
             return ResponseEntity.notFound().build();
+        }
+
+        var tmp = user.getGifs().removeIf(
+                g -> g.get_id().equals(gif.get_id())
+        );
+        if (tmp) {
+            userService.save(user);
+            return ResponseEntity.ok().build();
         }
 
         //add gif to user
