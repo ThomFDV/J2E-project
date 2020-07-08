@@ -9,12 +9,6 @@ import java.util.Optional;
 
 @RepositoryRestResource(collectionResourceRel = "gif", path = "gif")
 public interface GifRepository extends MongoRepository<Gif, String> {
-
-    Optional<Gif> findByUrl(String url);
-
-    Optional<Gif> findByName(String name);
-
     @Query("{url: '?1', name: '?0'}")
     Optional<Gif> findByNameAndUrl(String name, String url);
-
 }

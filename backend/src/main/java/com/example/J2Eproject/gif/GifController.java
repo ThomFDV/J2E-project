@@ -1,7 +1,10 @@
 package com.example.J2Eproject.gif;
 
+import com.example.J2Eproject.user.UserDetailsImpl;
+import com.example.J2Eproject.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -13,10 +16,12 @@ import java.net.URI;
 public class GifController {
 
     private final GifService service;
+    private final UserService userService;
 
     @Autowired
-    public GifController(GifService service) {
+    public GifController(GifService service, UserService userService) {
         this.service = service;
+        this.userService = userService;
     }
 
     @PostMapping
@@ -24,12 +29,21 @@ public class GifController {
         if (gifDTO.getName().isEmpty() || gifDTO.getUrl().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-        //add the user
-        var gif = service.add(gifDTO);
 
+        UserDetailsImpl userDetails =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        var userId = userDetails.getId();
+        var user = userService.getById(userId);
+        user.orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
+
+        var gif = service.add(gifDTO);
         if (gif == null) {
             return ResponseEntity.notFound().build();
         }
+
+        //add gif to user
+        user.get().addGif(gif);
 
         URI uri = uriBuilder.path("/gif/{gifId}").buildAndExpand(gif.get_id()).toUri();
 

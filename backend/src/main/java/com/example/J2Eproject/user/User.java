@@ -1,5 +1,6 @@
 package com.example.J2Eproject.user;
 
+import com.example.J2Eproject.gif.Gif;
 import com.example.J2Eproject.role.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -38,6 +39,9 @@ public class User {
 
     @DBRef
     private Set<Role> roles = new HashSet<>();
+
+    @DBRef
+    private Set<Gif> gifs = new HashSet<>();
 
     public User() {
     }
@@ -106,5 +110,9 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addGif(Gif gif) {
+        this.gifs.add(gif);
     }
 }
