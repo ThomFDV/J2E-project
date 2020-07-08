@@ -1,5 +1,6 @@
 package com.example.J2Eproject.gif;
 
+import com.example.J2Eproject.user.User;
 import com.example.J2Eproject.user.UserDetailsImpl;
 import com.example.J2Eproject.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,7 @@ public class GifController {
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         var userId = userDetails.getId();
-        var user = userService.getById(userId);
-        user.orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
+        User user = userService.getById(userId).orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
 
         var gif = service.add(gifDTO);
         if (gif == null) {
@@ -43,7 +43,8 @@ public class GifController {
         }
 
         //add gif to user
-        user.get().addGif(gif);
+        user.addGif(gif);
+        userService.save(user);
 
         URI uri = uriBuilder.path("/gif/{gifId}").buildAndExpand(gif.get_id()).toUri();
 
