@@ -16,8 +16,9 @@ export class ProfileGuard implements CanActivate {
     if (this.userService.isLoggedIn()) {
       return true;
     } else {
+      alert("Sorry! You should be authenticated to access to this content. Please login.")
       return this.router.parseUrl("/login");
     }
   }
-  
+
 }

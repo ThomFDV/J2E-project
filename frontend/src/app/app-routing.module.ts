@@ -34,11 +34,13 @@ const routes: Routes = [
   },
   {
     path: 'blog/create',
-    component: CreatePostComponent
+    component: CreatePostComponent,
+    canActivate: [ProfileGuard]
   },
   {
     path: 'blog/:postId',
-    component: PostViewComponent
+    component: PostViewComponent,
+    canActivate: [ProfileGuard]
   }
 ];
 

@@ -14,8 +14,7 @@ export class PostService {
   constructor(private http: HttpClient, private token: TokenStorageService) { }
 
   getAllPost(): Observable<Post[]> {
-    const authHeader = { headers: this.token.getHeaderToken() };
-    return this.http.get<Post[]>(this.backendUrl, authHeader);
+    return this.http.get<Post[]>(this.backendUrl);
   }
 
   getPostById(postId: string): Observable<Post> {

@@ -3,6 +3,7 @@ package com.example.J2Eproject.post;
 import com.example.J2Eproject.user.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class PostController {
         return postService.getAll();
     }
 
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("/{postId}")
     public ResponseEntity<Optional<Post>> getPostById(@PathVariable String postId) {
         Optional<Post> post = postService.getById(postId);
@@ -33,6 +35,7 @@ public class PostController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity addPost(@Valid @RequestBody PostDTO postDTO) {
         UserDetailsImpl userDetails =
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -45,11 +48,13 @@ public class PostController {
     }
 
     @PutMapping("/{postId}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Post> updatePost(@PathVariable String postId, @Valid @RequestBody PostDTO postDTO) {
         return ResponseEntity.ok(postService.update(postDTO, postId));
     }
 
     @DeleteMapping("/{postId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity deletePostById(@PathVariable String postId) {
         postService.delete(postId);
         return ResponseEntity.ok().build();
