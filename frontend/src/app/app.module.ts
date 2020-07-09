@@ -22,6 +22,7 @@ import { SearchGifComponent } from './components/home/search-gif/search-gif.comp
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { AccountComponent } from './components/user/account/account.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AccountComponent } from './components/user/account/account.component';
     SearchGifComponent,
     LoginComponent,
     RegisterComponent,
-    AccountComponent
+    AccountComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { AccountComponent } from './components/user/account/account.component';
 import { ProfileGuard } from './guards/profile.guard';
+import {BlogComponent} from "./components/blog/blog.component";
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
     path: 'profile',
     component: AccountComponent,
     canActivate: [ProfileGuard]
+  },
+  {
+    path: 'blog',
+    component: BlogComponent
   }
 ];
 
