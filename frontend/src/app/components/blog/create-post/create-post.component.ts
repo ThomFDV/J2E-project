@@ -27,8 +27,7 @@ export class CreatePostComponent implements OnInit {
   sendPost() {
     this.postService.addPost(this.postForm.get('title').value, this.postForm.get('content').value)
       .subscribe((post: Post) => {
-        console.log(post);
-        this.router.navigateByUrl(`/blog`);
+        this.router.navigateByUrl(`/blog/${post.id}`);
       })
   }
 

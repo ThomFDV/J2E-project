@@ -24,6 +24,7 @@ import { RegisterComponent } from './components/user/register/register.component
 import { AccountComponent } from './components/user/account/account.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { CreatePostComponent } from './components/blog/create-post/create-post.component';
+import { PostViewComponent } from './components/blog/post-view/post-view.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CreatePostComponent } from './components/blog/create-post/create-post.c
     RegisterComponent,
     AccountComponent,
     BlogComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    PostViewComponent
   ],
   imports: [
     BrowserModule,

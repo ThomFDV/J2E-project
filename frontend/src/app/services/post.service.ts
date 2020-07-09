@@ -18,6 +18,11 @@ export class PostService {
     return this.http.get<Post[]>(this.backendUrl, authHeader);
   }
 
+  getPostById(postId: string): Observable<Post> {
+    const authHeader = { headers: this.token.getHeaderToken() };
+    return this.http.get<Post>(`${this.backendUrl}/${postId}`, authHeader);
+  }
+
   addPost(title: string, content: string): Observable<Post> {
     const authHeader = { headers: this.token.getHeaderToken() };
     return this.http.post<Post>(this.backendUrl, {

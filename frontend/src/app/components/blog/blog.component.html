@@ -17,7 +17,7 @@
          <p>{{ (post.content.length>180)? (post.content | slice:0:180)+'...':(post.content) }}</p>
          <div class="d-flex">
            <h6 class="p-0 m-0 d-flex align-self-center">{{ post.author }} - 01/01/2020</h6>
-           <a mat-raised-button color="accent" href="https://www.google.com/" target="_blank" class="ml-3">
+           <a mat-raised-button color="accent" routerLink="/blog/{{ post.id }}" class="ml-3">
              See more
            </a>
          </div>
