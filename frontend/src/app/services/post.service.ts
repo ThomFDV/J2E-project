@@ -17,4 +17,12 @@ export class PostService {
     const authHeader = { headers: this.token.getHeaderToken() };
     return this.http.get<Post[]>(this.backendUrl, authHeader);
   }
+
+  addPost(title: string, content: string): Observable<Post> {
+    const authHeader = { headers: this.token.getHeaderToken() };
+    return this.http.post<Post>(this.backendUrl, {
+      title,
+      content
+    }, authHeader)
+  }
 }
