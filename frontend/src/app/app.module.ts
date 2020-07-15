@@ -25,6 +25,8 @@ import { AccountComponent } from './components/user/account/account.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { CreatePostComponent } from './components/blog/create-post/create-post.component';
 import { PostViewComponent } from './components/blog/post-view/post-view.component';
+import { AddCommentComponent } from './components/blog/add-comment/add-comment.component';
+import { CommentListComponent } from './components/blog/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { PostViewComponent } from './components/blog/post-view/post-view.compone
     AccountComponent,
     BlogComponent,
     CreatePostComponent,
-    PostViewComponent
+    PostViewComponent,
+    AddCommentComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,6 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    @Autowired
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -22,17 +21,17 @@ public class PostService {
 
     public List<Post> getAll() { return postRepository.findAll(); }
 
-    public Post add(PostDTO post, String username) {
-        return postRepository.save(new Post(post.getTitle(), post.getContent(), username));
+    public Post add(String title, String content, String username) {
+        return postRepository.save(new Post(title, content, username));
     }
 
     public Post update(PostDTO postDTO, String postId) {
         return postRepository.findById(postId).map(post -> {
             if (postDTO.getTitle() != null) {
-                post.title = postDTO.getTitle();
+                post.setTitle(postDTO.getTitle());
             }
             if (postDTO.getContent() != null) {
-                post.content = postDTO.getContent();
+                post.setContent(postDTO.getContent());
             }
             return postRepository.save(post);
         }).orElseThrow(RuntimeException::new);

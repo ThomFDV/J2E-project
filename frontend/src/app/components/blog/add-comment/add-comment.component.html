@@ -1,0 +1,11 @@
+<mat-card class="my-2 mx-auto col-8">
+  <form [formGroup]="commentForm" (ngSubmit)="sendComment()" class="d-flex flex-column">
+    <mat-form-field appearance="outline" class="my-3">
+      <mat-label>Content</mat-label>
+      <textarea matInput placeholder="Content of the post" formControlName="content" matTextareaAutosize="true"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="accent" class="col-4 m-auto">
+      Send
+    </button>
+  </form>
+</mat-card>

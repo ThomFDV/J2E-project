@@ -40,7 +40,7 @@ public class PostController {
         UserDetailsImpl userDetails =
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = userDetails.getUsername();
-        Post post = postService.add(postDTO, username);
+        Post post = postService.add(postDTO.getTitle(),postDTO.getContent(), username);
         if (post != null) {
             return ResponseEntity.ok(post);
         }

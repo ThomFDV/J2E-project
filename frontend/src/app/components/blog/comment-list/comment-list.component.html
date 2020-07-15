@@ -1,0 +1,6 @@
+<mat-card *ngFor="let comment of comments" class="col-8 mx-auto my-2 text-left">
+  <div>
+    <h5>Posted by {{ comment?.author }} - 01/01/2020</h5>
+    <p>{{ comment?.content }}</p>
+  </div>
+</mat-card>

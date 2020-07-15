@@ -1,5 +1,6 @@
 package com.example.J2Eproject.post;
 
+import com.example.J2Eproject.comment.Comment;
 import com.example.J2Eproject.user.User;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -8,21 +9,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Document(collection = "posts")
 public class Post {
     @Id
-    String id;
+    private String id;
 
     @NotBlank
     @Size(max = 100)
-    String title;
+    private String title;
 
     @NotBlank
-    String content;
+    private String content;
 
     @NotBlank
-    String author;
+    private String author;
+
+    @DBRef
+    private Set<Comment> comments = new HashSet<>();
 
     public Post() {
     }
@@ -31,6 +37,13 @@ public class Post {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public Post(@NotBlank @Size(max = 100) String title, @NotBlank String content, @NotBlank String author, Set<Comment> comments) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+        this.comments = comments;
     }
 
     public String getId() {
@@ -63,5 +76,17 @@ public class Post {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 }

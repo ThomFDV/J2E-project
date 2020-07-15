@@ -11,6 +11,7 @@ import {Post} from "../../../models/post";
 export class PostViewComponent implements OnInit {
 
   post: Post;
+  showCommentForm: boolean = false;
 
   constructor(private postService: PostService, private route: ActivatedRoute) { }
 
