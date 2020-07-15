@@ -21,8 +21,8 @@ public class PostService {
 
     public List<Post> getAll() { return postRepository.findAll(); }
 
-    public Post add(String title, String content, String username) {
-        return postRepository.save(new Post(title, content, username));
+    public Post add(String title, String content, String gifUrl, String username) {
+        return postRepository.save(new Post(title, content, username, gifUrl));
     }
 
     public Post update(PostDTO postDTO, String postId) {
@@ -32,6 +32,9 @@ public class PostService {
             }
             if (postDTO.getContent() != null) {
                 post.setContent(postDTO.getContent());
+            }
+            if (postDTO.getGifUrl() != null) {
+                post.setGifUrl(postDTO.getGifUrl());
             }
             return postRepository.save(post);
         }).orElseThrow(RuntimeException::new);

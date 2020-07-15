@@ -4,7 +4,11 @@
   </h1>
   <mat-card class="my-5 mx-auto col-8">
     <form [formGroup]="postForm" (ngSubmit)="sendPost()" class="d-flex flex-column">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="my-3">
+        <mat-label>Presentation Gif</mat-label>
+        <input matInput placeholder="Presentation Gif" formControlName="gif">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="my-3">
         <mat-label>Title</mat-label>
         <input matInput placeholder="Title of the post" formControlName="title">
       </mat-form-field>

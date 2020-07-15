@@ -27,22 +27,27 @@ public class Post {
     @NotBlank
     private String author;
 
+    @NotBlank
+    private String gifUrl;
+
     @DBRef
     private Set<Comment> comments = new HashSet<>();
 
     public Post() {
     }
 
-    public Post(@NotBlank @Size(max = 100) String title, @NotBlank String content, @NotBlank String author) {
+    public Post(@NotBlank @Size(max = 100) String title, @NotBlank String content, @NotBlank String author, @NotBlank String gifUrl) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.gifUrl = gifUrl;
     }
 
-    public Post(@NotBlank @Size(max = 100) String title, @NotBlank String content, @NotBlank String author, Set<Comment> comments) {
+    public Post(@NotBlank @Size(max = 100) String title, @NotBlank String content, @NotBlank String author, @NotBlank String gifUrl, Set<Comment> comments) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.gifUrl = gifUrl;
         this.comments = comments;
     }
 
@@ -76,6 +81,14 @@ public class Post {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getGifUrl() {
+        return gifUrl;
+    }
+
+    public void setGifUrl(String gifUrl) {
+        this.gifUrl = gifUrl;
     }
 
     public Set<Comment> getComments() {

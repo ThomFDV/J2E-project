@@ -23,7 +23,7 @@
          </div>
        </div>
        <div class="col-4">
-         <iframe src="https://giphy.com/embed/iFxaWHoUsXqm6ej3zp" class="gif-size" frameborder="0" allowFullScreen></iframe>
+         <iframe [src]="post.gifUrl | safe" class="gif-size" frameborder="0" allowFullScreen></iframe>
        </div>
      </div>
    </mat-card>
