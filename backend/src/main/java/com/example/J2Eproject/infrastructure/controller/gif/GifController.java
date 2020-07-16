@@ -1,19 +1,18 @@
-package com.example.J2Eproject.web.controllers;
+package com.example.J2Eproject.infrastructure.controller.gif;
 
-import com.example.J2Eproject.infrastructure.persistence.entities.Gif;
-import com.example.J2Eproject.web.controllers.post.GifDTO;
+import com.example.J2Eproject.domain.models.Gif;
+import com.example.J2Eproject.domain.models.User;
 import com.example.J2Eproject.use_case.services.GifService;
-import com.example.J2Eproject.infrastructure.persistence.entities.User;
 import com.example.J2Eproject.use_case.services.authent.UserDetailsImpl;
 import com.example.J2Eproject.use_case.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/gif")
@@ -29,49 +28,53 @@ public class GifController {
     }
 
     @PostMapping
-    public ResponseEntity<?> AddToFavorite(@RequestBody @Valid GifDTO gifDTO, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity AddToFavorite(@RequestBody @Valid GifDTO gifDTO, UriComponentsBuilder uriBuilder) {
         if (gifDTO.getName().isEmpty() || gifDTO.getUrl().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
         UserDetailsImpl userDetails =
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var userId = userDetails.getId();
-        User user = userService.getById(userId).orElseThrow(() -> new RuntimeException("Error. User not found with id: " + userId));
-        var gif = service.add(gifDTO);
-        if (gif == null) {
-            return ResponseEntity.notFound().build();
+
+        User user = userService.getById(userId);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        var tmp = user.getGifs().removeIf(
+        Gif gif = service.add(new Gif(gifDTO.getUrl(), gifDTO.getName(), 0));
+        if (gif == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        boolean tmp = user.getMongoGifs().removeIf(
                 g -> g.get_id().equals(gif.get_id())
         );
         if (tmp) {
-            userService.save(user);
+            userService.add(user);
             return ResponseEntity.ok().build();
         }
 
         //add gif to user
         user.addGif(gif);
-        userService.save(user);
+        userService.add(user);
 
-        URI uri = uriBuilder.path("/gif/{gifId}").buildAndExpand(gif.get_id()).toUri();
-
-        return ResponseEntity.created(uri).build();
+        return new ResponseEntity<>(toDto(gif), HttpStatus.CREATED);
     }
 
     @GetMapping("/{gifId}")
     public ResponseEntity<GifDTO> getGif(@PathVariable("gifId") String gifId) {
-        return service
-                .getById(gifId)
-                .map(this::toDto)
-                .orElse(ResponseEntity.notFound().build());
+        Gif gif = service.getById(gifId);
+        if (gif == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(toDto(gif));
     }
 
-    private ResponseEntity<GifDTO> toDto(Gif gif) {
+    private GifDTO toDto(Gif gif) {
         var body = new GifDTO();
         body.setName(gif.getName());
         body.setUrl(gif.getUrl());
 
-        return ResponseEntity.ok(body);
+        return body;
     }
 }

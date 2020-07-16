@@ -1,6 +1,5 @@
-package com.example.J2Eproject.web.controllers;
+package com.example.J2Eproject.infrastructure.controller.comment;
 
-import com.example.J2Eproject.web.controllers.post.CommentDTO;
 import com.example.J2Eproject.use_case.services.CommentService;
 import com.example.J2Eproject.infrastructure.persistence.entities.Comment;
 import com.example.J2Eproject.use_case.services.authent.UserDetailsImpl;

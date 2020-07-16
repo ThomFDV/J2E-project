@@ -1,12 +1,9 @@
 package com.example.J2Eproject.use_case.services;
 
-import com.example.J2Eproject.web.controllers.post.GifDTO;
-import com.example.J2Eproject.infrastructure.persistence.dal.GifRepository;
-import com.example.J2Eproject.infrastructure.persistence.entities.Gif;
+import com.example.J2Eproject.domain.GifRepository;
+import com.example.J2Eproject.domain.models.Gif;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class GifService {
@@ -18,19 +15,17 @@ public class GifService {
         this.repository = repository;
     }
 
-    public Gif add(GifDTO gifDTO) {
-        var gif = repository.findByNameAndUrl(gifDTO.getName(), gifDTO.getUrl());
-        if (gif.isPresent()) {
-            var toReturn = gif.get();
-            toReturn.setFavorite(toReturn.getFavorite() + 1);
-            return repository.save(gif.get());
+    public Gif add(Gif gif) {
+        Gif findGif = repository.getByNameAndUrl(gif.getName(), gif.getUrl());
+        if (findGif == null) {
+            return repository.add(gif);
         }
-
-        return repository.save(new Gif(gifDTO.getUrl(), gifDTO.getName(), 1));
+        findGif.setFavorite(findGif.getFavorite() + 1);
+        return repository.add(gif);
     }
 
-    public Optional<Gif> getById(String id) {
-        return repository.findById(id);
+    public Gif getById(String id) {
+        return repository.getById(id);
     }
 
 }

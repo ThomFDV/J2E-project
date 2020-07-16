@@ -1,6 +1,6 @@
 package com.example.J2Eproject.use_case.services;
 
-import com.example.J2Eproject.web.controllers.post.CommentDTO;
+import com.example.J2Eproject.infrastructure.controller.comment.CommentDTO;
 import com.example.J2Eproject.infrastructure.persistence.dal.CommentRepository;
 import com.example.J2Eproject.infrastructure.persistence.entities.Comment;
 import com.example.J2Eproject.infrastructure.persistence.entities.Post;

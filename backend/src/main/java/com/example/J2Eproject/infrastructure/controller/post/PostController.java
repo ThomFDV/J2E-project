@@ -1,7 +1,6 @@
-package com.example.J2Eproject.web.controllers;
+package com.example.J2Eproject.infrastructure.controller.post;
 
 import com.example.J2Eproject.infrastructure.persistence.entities.Post;
-import com.example.J2Eproject.web.controllers.post.PostDTO;
 import com.example.J2Eproject.use_case.services.PostService;
 import com.example.J2Eproject.use_case.services.authent.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;

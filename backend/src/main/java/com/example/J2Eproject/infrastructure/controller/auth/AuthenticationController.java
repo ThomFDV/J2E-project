@@ -1,16 +1,15 @@
-package com.example.J2Eproject.web.controllers;
+package com.example.J2Eproject.infrastructure.controller.auth;
 
+import com.example.J2Eproject.domain.models.User;
 import com.example.J2Eproject.use_case.services.response.JwtResponse;
-import com.example.J2Eproject.web.controllers.post.LoginDTO;
 import com.example.J2Eproject.use_case.services.response.MessageResponse;
-import com.example.J2Eproject.web.controllers.post.RegisterDTO;
 import com.example.J2Eproject.domain.models.enums.ERole;
 import com.example.J2Eproject.infrastructure.persistence.entities.Role;
 import com.example.J2Eproject.infrastructure.persistence.dal.RoleRepository;
 import com.example.J2Eproject.web.jwt.JwtUtils;
-import com.example.J2Eproject.infrastructure.persistence.entities.User;
+import com.example.J2Eproject.infrastructure.dao.user.MongoUser;
 import com.example.J2Eproject.use_case.services.authent.UserDetailsImpl;
-import com.example.J2Eproject.infrastructure.persistence.dal.UserRepository;
+import com.example.J2Eproject.infrastructure.dao.user.MongoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +34,7 @@ public class AuthenticationController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
+    MongoUserRepository userRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -115,7 +114,7 @@ public class AuthenticationController {
         }
 
         user.setRoles(roles);
-        userRepository.save(user);
+        userRepository.add(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

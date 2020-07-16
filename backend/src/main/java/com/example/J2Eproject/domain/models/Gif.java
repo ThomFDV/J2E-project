@@ -1,10 +1,8 @@
-package com.example.J2Eproject.infrastructure.persistence.entities;
+package com.example.J2Eproject.domain.models;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "gifs")
 public class Gif {
     @Id
     private ObjectId _id;
@@ -38,5 +36,3 @@ public class Gif {
         return _id;
     }
 }
-
-

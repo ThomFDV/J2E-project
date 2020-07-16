@@ -1,21 +1,27 @@
-package com.example.J2Eproject.web.controllers.post;
+package com.example.J2Eproject.domain.models;
 
-import lombok.Data;
+import com.example.J2Eproject.infrastructure.dao.gif.MongoGif;
+import com.example.J2Eproject.infrastructure.persistence.entities.Role;
 
-public class UserDTO {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
+public class User {
     private String id;
     private String email;
     private String username;
     private String firstName;
     private String lastName;
     private String password;
+    private Set<Role> roles = new HashSet<>();
+    private Set<Gif> gifs = new HashSet<>();
 
-    public UserDTO() {
-    }
-
-    public UserDTO(String id, String email, String username, String firstName, String lastName, String password) {
-        this.id = id;
+    public User(@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 20) String username,
+                     @NotBlank @Size(max = 30) String firstName, @NotBlank @Size(max = 30) String lastName,
+                     @Size(max = 120) String password) {
         this.email = email;
         this.username = username;
         this.firstName = firstName;
@@ -69,5 +75,25 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addGif(Gif gif) {
+        this.gifs.add(gif);
+    }
+
+    public void removeGif(Gif mongoGif) {
+        this.gifs.removeIf(g -> g.get_id().equals(mongoGif.get_id()));
+    }
+
+    public Set<Gif> getMongoGifs() {
+        return gifs;
     }
 }

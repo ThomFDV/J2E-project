@@ -2,7 +2,7 @@ package com.example.J2Eproject.use_case.services;
 
 import com.example.J2Eproject.infrastructure.persistence.dal.PostRepository;
 import com.example.J2Eproject.infrastructure.persistence.entities.Post;
-import com.example.J2Eproject.web.controllers.post.PostDTO;
+import com.example.J2Eproject.infrastructure.controller.post.PostDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

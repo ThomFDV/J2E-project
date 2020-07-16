@@ -1,5 +1,7 @@
-package com.example.J2Eproject.infrastructure.persistence.entities;
+package com.example.J2Eproject.infrastructure.dao.user;
 
+import com.example.J2Eproject.infrastructure.dao.gif.MongoGif;
+import com.example.J2Eproject.infrastructure.persistence.entities.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Document(collection = "users")
-public class User {
+public class MongoUser {
     @Id
     private String id;
 
@@ -39,14 +41,14 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     @DBRef
-    private Set<Gif> gifs = new HashSet<>();
+    private Set<MongoGif> mongoGifs = new HashSet<>();
 
-    public User() {
+    public MongoUser() {
     }
 
-    public User(@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 20) String username,
-                @NotBlank @Size(max = 30) String firstName, @NotBlank @Size(max = 30) String lastName,
-                @Size(max = 120) String password) {
+    public MongoUser(@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 20) String username,
+                     @NotBlank @Size(max = 30) String firstName, @NotBlank @Size(max = 30) String lastName,
+                     @Size(max = 120) String password) {
         this.email = email;
         this.username = username;
         this.firstName = firstName;
@@ -110,15 +112,15 @@ public class User {
         this.roles = roles;
     }
 
-    public void addGif(Gif gif) {
-        this.gifs.add(gif);
+    public void addGif(MongoGif mongoGif) {
+        this.mongoGifs.add(mongoGif);
     }
 
-    public void removeGif(Gif gif) {
-        this.gifs.removeIf(g -> g.get_id().equals(gif.get_id()));
+    public void removeGif(MongoGif mongoGif) {
+        this.mongoGifs.removeIf(g -> g.get_id().equals(mongoGif.get_id()));
     }
 
-    public Set<Gif> getGifs() {
-        return gifs;
+    public Set<MongoGif> getMongoGifs() {
+        return mongoGifs;
     }
 }

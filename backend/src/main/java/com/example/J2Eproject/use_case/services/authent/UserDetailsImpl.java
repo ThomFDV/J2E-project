@@ -1,6 +1,6 @@
 package com.example.J2Eproject.use_case.services.authent;
 
-import com.example.J2Eproject.infrastructure.persistence.entities.User;
+import com.example.J2Eproject.domain.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,4 +1,4 @@
-package com.example.J2Eproject.web.controllers.post;
+package com.example.J2Eproject.infrastructure.controller.auth;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

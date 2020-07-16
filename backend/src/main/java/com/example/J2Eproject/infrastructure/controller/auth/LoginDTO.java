@@ -1,4 +1,4 @@
-package com.example.J2Eproject.web.controllers.post;
+package com.example.J2Eproject.infrastructure.controller.auth;
 
 public class LoginDTO {
     private String username;
