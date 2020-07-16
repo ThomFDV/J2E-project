@@ -1,8 +1,5 @@
 package com.example.J2Eproject.domain.models;
 
-import com.example.J2Eproject.infrastructure.dao.gif.MongoGif;
-import com.example.J2Eproject.infrastructure.persistence.entities.Role;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -81,7 +78,7 @@ public class User {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setMongoRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

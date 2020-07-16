@@ -1,7 +1,7 @@
 package com.example.J2Eproject.infrastructure.dao.user;
 
 import com.example.J2Eproject.infrastructure.dao.gif.MongoGif;
-import com.example.J2Eproject.infrastructure.persistence.entities.Role;
+import com.example.J2Eproject.infrastructure.dao.role.MongoRole;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -38,7 +38,7 @@ public class MongoUser {
     private String password;
 
     @DBRef
-    private Set<Role> roles = new HashSet<>();
+    private Set<MongoRole> mongoRoles = new HashSet<>();
 
     @DBRef
     private Set<MongoGif> mongoGifs = new HashSet<>();
@@ -104,12 +104,12 @@ public class MongoUser {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<MongoRole> getMongoRoles() {
+        return mongoRoles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setMongoRoles(Set<MongoRole> mongoRoles) {
+        this.mongoRoles = mongoRoles;
     }
 
     public void addGif(MongoGif mongoGif) {

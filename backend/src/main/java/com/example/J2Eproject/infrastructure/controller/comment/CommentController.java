@@ -1,7 +1,8 @@
 package com.example.J2Eproject.infrastructure.controller.comment;
 
+import com.example.J2Eproject.domain.models.Comment;
 import com.example.J2Eproject.use_case.services.CommentService;
-import com.example.J2Eproject.infrastructure.persistence.entities.Comment;
+import com.example.J2Eproject.infrastructure.dao.comment.MongoComment;
 import com.example.J2Eproject.use_case.services.authent.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

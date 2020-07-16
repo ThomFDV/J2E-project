@@ -1,8 +1,7 @@
 package com.example.J2Eproject.use_case.services.authent;
 
+import com.example.J2Eproject.domain.UserRepository;
 import com.example.J2Eproject.domain.models.User;
-import com.example.J2Eproject.infrastructure.dao.user.MongoUserRepository;
-import com.example.J2Eproject.infrastructure.dao.user.MongoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    MongoUserRepository userRepository;
+    UserRepository userRepository;
 
     @Override
     @Transactional

@@ -1,33 +1,16 @@
-package com.example.J2Eproject.infrastructure.persistence.entities;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.example.J2Eproject.domain.models;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-@Document(collection = "posts")
 public class Post {
-    @Id
     private String id;
-
-    @NotBlank
-    @Size(max = 100)
     private String title;
-
-    @NotBlank
     private String content;
-
-    @NotBlank
     private String author;
-
-    @NotBlank
     private String gifUrl;
-
-    @DBRef
     private Set<Comment> comments = new HashSet<>();
 
     public Post() {
@@ -40,7 +23,7 @@ public class Post {
         this.gifUrl = gifUrl;
     }
 
-    public Post(@NotBlank @Size(max = 100) String title, @NotBlank String content, @NotBlank String author, @NotBlank String gifUrl, Set<Comment> comments) {
+    public Post(@NotBlank @Size(max = 100) String title, @NotBlank String content, @NotBlank String author, @NotBlank String gifUrl, Set<Comment> mongoComments) {
         this.title = title;
         this.content = content;
         this.author = author;

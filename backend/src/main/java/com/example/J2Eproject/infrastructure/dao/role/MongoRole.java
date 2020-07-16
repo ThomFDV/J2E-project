@@ -1,20 +1,25 @@
-package com.example.J2Eproject.infrastructure.persistence.entities;
+package com.example.J2Eproject.infrastructure.dao.role;
 
 import com.example.J2Eproject.domain.models.enums.ERole;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "roles")
-public class Role {
+public class MongoRole {
     @Id
     private String id;
 
     private ERole name;
 
-    public Role() {
+    public MongoRole() {
     }
 
-    public Role(ERole name) {
+    public MongoRole(String id, ERole name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public MongoRole(ERole name) {
         this.name = name;
     }
 

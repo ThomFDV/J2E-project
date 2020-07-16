@@ -1,22 +1,12 @@
-package com.example.J2Eproject.infrastructure.persistence.entities;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.example.J2Eproject.domain.models;
 
 import javax.validation.constraints.NotBlank;
 
-@Document(collection = "comments")
 public class Comment {
-    @Id
+
     private String id;
-
-    @NotBlank
     private String content;
-
-    @NotBlank
     private String author;
-
-    @NotBlank
     private String postId;
 
     public Comment() {

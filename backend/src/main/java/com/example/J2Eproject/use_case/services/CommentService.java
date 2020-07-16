@@ -1,10 +1,10 @@
 package com.example.J2Eproject.use_case.services;
 
+import com.example.J2Eproject.domain.CommentRepository;
+import com.example.J2Eproject.domain.PostRepository;
+import com.example.J2Eproject.domain.models.Comment;
+import com.example.J2Eproject.domain.models.Post;
 import com.example.J2Eproject.infrastructure.controller.comment.CommentDTO;
-import com.example.J2Eproject.infrastructure.persistence.dal.CommentRepository;
-import com.example.J2Eproject.infrastructure.persistence.entities.Comment;
-import com.example.J2Eproject.infrastructure.persistence.entities.Post;
-import com.example.J2Eproject.infrastructure.persistence.dal.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +14,24 @@ import java.util.List;
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final PostRepository postRepository;
+    private final PostRepository mongoPostRepository;
 
     @Autowired
     public CommentService(CommentRepository commentRepository, PostRepository postRepository) {
         this.commentRepository = commentRepository;
-        this.postRepository = postRepository;
+        this.mongoPostRepository = postRepository;
     }
 
     public List<Comment> getAll() {
-        return commentRepository.findAll();
+        return commentRepository.getAll();
     }
 
     public Comment add(CommentDTO commentDTO, String username, String postId) {
-        Post post = this.postRepository.findById(postId).orElse(null);
-        Comment comment = this.commentRepository.save(new Comment(commentDTO.getContent(), username, postId));
+        Post post = mongoPostRepository.byId(postId);
+        Comment comment = this.commentRepository.add(new Comment(commentDTO.getContent(), username, postId));
         if (post != null) {
             post.addComment(comment);
-            this.postRepository.save(post);
+            this.mongoPostRepository.add(post);
         } else {
             System.out.println("\n\nNO POST\n\n");
             return null;

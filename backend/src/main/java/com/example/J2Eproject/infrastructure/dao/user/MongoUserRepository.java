@@ -51,10 +51,9 @@ public class MongoUserRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        final List<MongoUser> mongoUser = mongoTemplate.findAll(MongoUser.class);
-        final List<User> user = mongoUser.stream().map(UserAdapter::convertToUser).collect(Collectors.toList());
+        final List<MongoUser> mongoUsers = mongoTemplate.findAll(MongoUser.class);
 
-        return user;
+        return mongoUsers.stream().map(UserAdapter::convertToUser).collect(Collectors.toList());
     }
 
     @Override

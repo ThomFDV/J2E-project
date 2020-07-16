@@ -1,15 +1,14 @@
 package com.example.J2Eproject.infrastructure.controller.auth;
 
+import com.example.J2Eproject.domain.RoleRepository;
+import com.example.J2Eproject.domain.UserRepository;
+import com.example.J2Eproject.domain.models.Role;
 import com.example.J2Eproject.domain.models.User;
 import com.example.J2Eproject.use_case.services.response.JwtResponse;
 import com.example.J2Eproject.use_case.services.response.MessageResponse;
 import com.example.J2Eproject.domain.models.enums.ERole;
-import com.example.J2Eproject.infrastructure.persistence.entities.Role;
-import com.example.J2Eproject.infrastructure.persistence.dal.RoleRepository;
 import com.example.J2Eproject.web.jwt.JwtUtils;
-import com.example.J2Eproject.infrastructure.dao.user.MongoUser;
 import com.example.J2Eproject.use_case.services.authent.UserDetailsImpl;
-import com.example.J2Eproject.infrastructure.dao.user.MongoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,7 +33,7 @@ public class AuthenticationController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    MongoUserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -93,27 +92,25 @@ public class AuthenticationController {
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            Role userRole = roleRepository.getByName(ERole.ROLE_USER);
+
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        Role adminRole = roleRepository.getByName(ERole.ROLE_ADMIN);
                         roles.add(adminRole);
 
                         break;
                     default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        Role userRole = roleRepository.getByName(ERole.ROLE_USER);
                         roles.add(userRole);
                 }
             });
         }
 
-        user.setRoles(roles);
+        user.setMongoRoles(roles);
         userRepository.add(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
