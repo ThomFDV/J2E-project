@@ -2,6 +2,7 @@ package com.example.J2Eproject.user;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
 import java.util.Optional;
 
 public interface UserRepository extends MongoRepository<User, String> {
@@ -15,4 +16,5 @@ public interface UserRepository extends MongoRepository<User, String> {
     Boolean existsById(ObjectId id);
 
     Boolean existsByEmail(String email);
+
 }

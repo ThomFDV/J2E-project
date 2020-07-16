@@ -1,0 +1,26 @@
+<section>
+  <h1 class="hero-title text-center pt-5">
+    <span class="word1">Post</span>
+  </h1>
+  <mat-card class="mt-5 mx-auto col-8">
+    <mat-card-title>{{ post?.title }}</mat-card-title>
+    <h6>Posted by {{ post?.author }} - 01/01/2020</h6>
+    <div>
+      <p>
+        {{ post?.content }}
+      </p>
+    </div>
+  </mat-card>
+
+  <div class="text-center">
+    <h3 class="my-3">Comments</h3>
+    <button mat-raised-button color="accent" (click)="showCommentForm = !showCommentForm;">
+      New Comment
+    </button>
+    <app-add-comment *ngIf="showCommentForm" [post]="post"></app-add-comment>
+    <app-comment-list *ngIf="post.comments" [post]="post"></app-comment-list>
+    <mat-card *ngIf="!post.comments" class="col-8">
+      <h5>No comments yet!</h5>
+    </mat-card>
+  </div>
+</section>

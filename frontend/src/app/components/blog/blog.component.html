@@ -1,0 +1,31 @@
+<section>
+  <h1 class="hero-title text-center pt-5">
+    <span class="word1">Blog</span>
+  </h1>
+  <h4 class="text-center mt-4 mb-5">Here you will find some posts about Gifs.</h4>
+  <div class="d-flex align-items-center justify-content-center">
+    <h4 class="m-0 p-0 text-info">Inspired? Please to hesitate to share us your ideas by creating your own post</h4>
+    <a mat-flat-button color="primary" routerLink="/blog/create" class="ml-2">
+      <mat-icon>create</mat-icon>
+    </a>
+  </div>
+  <div class="mt-5">
+   <mat-card class="col-8 mx-auto my-3" *ngFor="let post of posts">
+     <div class="d-flex">
+       <div>
+         <mat-card-title>{{ post.title }}</mat-card-title>
+         <p>{{ (post.content.length>180)? (post.content | slice:0:180)+'...':(post.content) }}</p>
+         <div class="d-flex">
+           <h6 class="p-0 m-0 d-flex align-self-center">{{ post.author }} - 01/01/2020</h6>
+           <a mat-raised-button color="accent" routerLink="/blog/{{ post.id }}" class="ml-3">
+             See more
+           </a>
+         </div>
+       </div>
+       <div class="col-4">
+         <iframe [src]="post.gifUrl | safe" class="gif-size" frameborder="0" allowFullScreen></iframe>
+       </div>
+     </div>
+   </mat-card>
+  </div>
+</section>

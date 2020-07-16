@@ -22,6 +22,11 @@ import { SearchGifComponent } from './components/home/search-gif/search-gif.comp
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { AccountComponent } from './components/user/account/account.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { CreatePostComponent } from './components/blog/create-post/create-post.component';
+import { PostViewComponent } from './components/blog/post-view/post-view.component';
+import { AddCommentComponent } from './components/blog/add-comment/add-comment.component';
+import { CommentListComponent } from './components/blog/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { AccountComponent } from './components/user/account/account.component';
     SearchGifComponent,
     LoginComponent,
     RegisterComponent,
-    AccountComponent
+    AccountComponent,
+    BlogComponent,
+    CreatePostComponent,
+    PostViewComponent,
+    AddCommentComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,
